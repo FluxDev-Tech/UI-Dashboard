@@ -26,11 +26,11 @@
 First of All for running the project you should do these three steps:
 
 ```
-git clone https://github.com/aryankholqi/nextUI-Dashboard.git
+git clone https://github.com/YujiTech/UI-Dashboard.git
 ```
 
 ```
-cd nextUI-Dashboard
+cd UI-Dashboard
 pnpm install
 ```
 
@@ -48,21 +48,6 @@ At first you face the login page, because the nature of dashboard panels, which 
 
 > We've used **fakestoreapi** login api to get an access token for working like a real authorization scenarios **(Note that you should always login with this username and password to access to dashboard )**. We've managed token with **js-cookie** library.
 
-## Dashboard (Home)
-
-well, when you successfully logged in, you'll face the dashboard layout which we really love it:
-
-![1720134683209](image/README/dashboardDark1.png)
-
-![1720134730641](image/README/dashboardLight1.png)
-
-![1720134770041](image/README/dashboardDark2.png)
-
-![1720738449974](image/README/dashboardLight2.png)
-
-## Folder Structure
-
-![1720738595211](image/README/1720738595211.png)
 
 > We want to go straight forward to src folder:
 
