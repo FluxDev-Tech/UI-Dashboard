@@ -1,4 +1,4 @@
-# NextUI-Dashboard (Starter Version)
+# UI-Dashboard (Starter Version)
 
 **Glad you chose us to develop your project.**
 
