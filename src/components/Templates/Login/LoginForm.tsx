@@ -12,7 +12,7 @@ import { FlipWords } from "../../ui/FlipWords";
 import { useTranslation } from "react-i18next";
 
 export default function LoginForm() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -34,18 +34,22 @@ export default function LoginForm() {
 
   const words = [t("toYourAccount"), t("toUnleashYourDream")];
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="relative w-[50%] xl:w-[40%] h-[90%] xl:h-full 2xl:h-[85%] hidden md:inline-block">
         <img
           className="w-[90%] h-full object-cover rounded-3xl"
           src={loginImg}
-          alt=""
+          alt="Login background"
         />
         <img
           className="w-[90%] absolute top-6 right-8 -z-10 blur-2xl h-full object-cover rounded-3xl"
           src={loginImg}
-          alt=""
+          alt="Login background blur"
         />
       </div>
       <form
@@ -64,7 +68,7 @@ export default function LoginForm() {
         <div className="space-y-6 w-full">
           <Input
             {...register("username", {
-              required: "Username Is Required",
+              required: t("usernameRequired") || "Username Is Required",
             })}
             classNames={{
               label: ["text-xs xl:text-base 3xl:text-lg"],
@@ -79,10 +83,11 @@ export default function LoginForm() {
             isInvalid={Boolean(errors.username)}
             errorMessage={errors.username?.message}
             label={t("username")}
+            autoComplete="username"
           />
           <Input
             {...register("password", {
-              required: "Password Is Required",
+              required: t("passwordRequired") || "Password Is Required",
             })}
             classNames={{
               label: ["text-xs xl:text-base 3xl:text-lg"],
@@ -95,25 +100,19 @@ export default function LoginForm() {
             type={isPasswordVisible ? "text" : "password"}
             className="font-poppinsRegular"
             endContent={
-              isPasswordVisible ? (
-                <span
-                  className="cursor-pointer"
-                  onClick={() => setIsPasswordVisible(false)}
-                >
-                  <EyeSlashIcon />
-                </span>
-              ) : (
-                <span
-                  className="cursor-pointer"
-                  onClick={() => setIsPasswordVisible(true)}
-                >
-                  <EyeIcon />
-                </span>
-              )
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="cursor-pointer focus:outline-none"
+                aria-label={isPasswordVisible ? "Hide password" : "Show password"}
+              >
+                {isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
+              </button>
             }
             label={t("password")}
             isInvalid={Boolean(errors.password)}
             errorMessage={errors.password?.message}
+            autoComplete="current-password"
           />
         </div>
         <HoverBorderGradient
@@ -124,6 +123,7 @@ export default function LoginForm() {
             type="submit"
             className="w-full bg-transparent h-full text-white text-xl xl:text-lg 3xl:text-3xl"
             isLoading={isPending}
+            disabled={isPending}
           >
             {t("login")}
           </Button>
